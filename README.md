@@ -1,2 +1,2 @@
 KeepTheScore is an online software for scorekeeping.
-![alt text](https://imgur.com/a6su4J3)
+![alt text](/public/images/demo.png)
