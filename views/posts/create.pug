@@ -1,0 +1,30 @@
+extends ../layouts/common.pug
+
+block content
+  a.back(href='javascript:history.back()') &larr; Back
+
+  form(action=`/posts/create/${userId}`, method="POST")
+    hr
+    br
+    input(type="text", name="title", placeholder="Optional title for your new board")
+    br
+    br
+    input(type="text", name="description", placeholder="Optional Description")
+    h2 Number of players
+    p You can edit, add and remove players later.
+    input(type='number' value='4' name='nop' min='1' max='100')
+    h2 Score Format
+    p Choose a format for the scores
+    select(name='score_format')
+      option(selected='' value='INTEGER') No decimal places
+      option(value='1_DP') 1 decimal place (for example &apos;3.1&apos;)
+      option(value='2_DP') 2 decimal places (for example &apos;3.14&apos;)
+    p Who gets a 🏆 emoji? 
+    select(name='trophy')
+      option(selected='' value='HIGHEST') Player with highest score
+      option(value='LOWEST') Player with lowest score
+      option(value='HIDDEN') Nobody
+    br
+    br
+    button.back1 &rarr; Next
+  script(type='text/javascript' src='/js/post.create.js')

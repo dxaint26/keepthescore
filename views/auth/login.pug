@@ -1,0 +1,29 @@
+html
+  head
+    link(rel="stylesheet", href="/styles/custom.css")
+    link(href='https://fonts.googleapis.com/css2?family=Space+Mono:wght@400&display=swap' rel='stylesheet')
+
+  body
+    div.gif(align='center')
+      br
+      img(src='/images/walk.gif' hspace='0' vspace='0' align='center' alt='bull')
+      img(src='/images/walk.gif' hspace='0' vspace='0' align='center' alt='bull')
+      img(src='/images/walk.gif' hspace='0' vspace='0' align='center' alt='bull')
+    div(align='center')
+      h1 Sign in 
+
+      if errors
+        each error in errors
+          span.error=error 
+
+      form.login(method="POST", action='/auth/login')
+        label(for="email") Email
+        br              
+        input#email(name="email", type="text", value=values ? values.email : "")
+        br
+        label(for="password") Password
+        br
+        input#password(name="password", type="password")
+        br
+        a.back2(href="/auth/signup") Sign up
+        button.back2 Sign in 

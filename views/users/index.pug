@@ -1,0 +1,14 @@
+extends ../layouts/common.pug
+
+block content
+  hr
+  br
+  a.back1.add(href=`/posts/create/${userId}`) &#43; New scoreboard
+  h2.title Your scoreboards
+  div 
+    - var n = 0
+    each scoreBoard in scoreBoards
+      a.scoreboard(href=`/posts/${scoreBoard._id}`)
+        h3= scoreBoard.title
+        p= date[n]
+      li.li-player= n++

@@ -1,0 +1,24 @@
+extends ../layouts/common.pug
+
+block content
+  a.back(href='javascript:history.back()') &larr; Back
+
+  form(action=`/posts/create/player/${userId}`, method="POST")
+    hr
+    br
+    h2 Player names
+    if errors
+      each error in errors
+        span.error=error 
+    - var n = 0;
+      while n < nop
+        input.player(type="text", name=`player${n+1}`, placeholder=`Name of player ${n+1}`, required, value=values ? values[n] : "")
+        li.li-player= n++
+    input.hide(type="text", name="title", value= title)
+    input.hide(type="text", name="nop", value= nop)
+    input.hide(type="text", name="description", value= description)
+    input.hide(type="text", name="score_format", value= scoreFormat)
+    input.hide(type="text", name="trophy", value= trophy)
+    br
+    br
+    button.back1 &rarr; Next

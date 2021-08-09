@@ -1,0 +1,18 @@
+extends ../layouts/common.pug
+
+block content
+  a.back(href='javascript:history.back()') &larr; Back
+  form(action=`/posts/edit-player/${scoreBoard._id}/${player}`, method="POST")
+    hr
+    br
+    h2 Player name
+    if errors
+        each error in errors
+          span.error=error 
+    input(type="text", name="name", value=values ? values :scoreBoard.scoreBoard[player-1][0], required)
+    br
+    br
+    button.back1 &rarr; Save changes
+  hr
+  form(action=`/posts/delete-player/${scoreBoard._id}/${player}`, method="POST")
+    button.back1.delete &rarr; Delete player

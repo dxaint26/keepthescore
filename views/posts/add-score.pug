@@ -1,0 +1,22 @@
+extends ../layouts/common.pug
+
+block content
+  a.back(href='javascript:history.back()') &larr; Back
+  if scoreBoard.scoreFormat === '1_DP'
+    - var step = '.1'
+  if scoreBoard.scoreFormat === '2_DP'
+    - var step = '.01'
+  if scoreBoard.scoreFormat === 'INTEGER'
+    - var step = '1'
+  form(action=`/posts/add-score/${scoreBoard._id}`, method="POST")
+    hr
+    br
+    input(type="text", name="name", placeholder="Round name (optional)")
+    - let n = 1
+    each player in scoreBoard.scoreBoard
+      p=player[0]
+      input(type='number' value='0' name=`score${n}` step= step)
+      li.li-player= n++
+    br
+    br
+    button.back1 &rarr; Save Scores

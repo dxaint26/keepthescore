@@ -1,0 +1,27 @@
+extends ../layouts/common.pug
+
+block content
+  a.back(href='javascript:history.back()') &larr; Back
+
+  form(action=`/posts/configure/${scoreBoard._id}`, method="POST")
+    hr
+    br
+    h2 Title
+    input(type="text", name="title", value=scoreBoard.title)
+    br
+    h2 Description
+    input(type="text", name="description", value=scoreBoard.description)
+    h2 Score Format
+    p Choose a format for the scores
+    select(name='score_format' value=scoreBoard.scoreFormat)
+      option(selected='' value='INTEGER') No decimal places
+      option(value='1_DP') 1 decimal place (for example &apos;3.1&apos;)
+      option(value='2_DP') 2 decimal places (for example &apos;3.14&apos;)
+    p Who gets a 🏆 emoji? 
+    select(name='trophy')
+      option(selected='' value='HIGHEST') Player with highest score
+      option(value='LOWEST') Player with lowest score
+      option(value='HIDDEN') Nobody
+    br
+    br
+    button.back1 &rarr; Next

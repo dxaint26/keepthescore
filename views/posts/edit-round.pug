@@ -1,0 +1,25 @@
+extends ../layouts/common.pug
+
+block content
+  a.back(href='javascript:history.back()') &larr; Back
+  if scoreBoard.scoreFormat === '1_DP'
+    - var step = '.1'
+  if scoreBoard.scoreFormat === '2_DP'
+    - var step = '.01'
+  if scoreBoard.scoreFormat === 'INTEGER'
+    - var step = '1'
+  form(action=`/posts/edit-round/${scoreBoard._id}/${round}`, method="POST")
+    hr
+    br
+    input(type="text", name="name", value=nameRound)
+    - let n = 1
+    each player in scoreBoard.scoreBoard
+      p=player[0]
+      input(type='number' value=player[round+1].score name=`score${n}` step= step)
+      li.li-player= n++
+    br
+    br
+    button.back1 &rarr; Save Scores
+  hr
+  form(action=`/posts/delete-round/${scoreBoard._id}/${round}`, method="POST")
+    button.back1.delete &rarr; Delete round

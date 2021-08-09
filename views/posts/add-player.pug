@@ -1,0 +1,15 @@
+extends ../layouts/common.pug
+
+block content
+  a.back(href='javascript:history.back()') &larr; Back
+  form(action=`/posts/add-player/${scoreBoard._id}`, method="POST")
+    hr
+    br
+    h2 Add a new player
+    if errors
+        each error in errors
+          span.error=error 
+    input(type="text", name="name", placeholder="Player name", value=values ? values : '', required)
+    br
+    br
+    button.back1 &rarr; Add player

@@ -1,0 +1,37 @@
+extends ../layouts/common.pug
+
+block content
+  hr
+  br
+  div
+    a.back2(href=`/posts/index/${scoreBoard.userId}`) HOME
+    a.back2(href=`/posts/configure/${scoreBoard._id}`) CONFIGURE
+    a.back2(href=`/posts/add-player/${scoreBoard._id}`) ADD PLAYER
+    a.back2(onclick="return confirm('This will delete all scores and cannot be undone. Are you sure?')" href=`/posts/reset/${scoreBoard._id}`) RESET ALL SCORES
+    a.back2(onclick="return confirm('This will delete all scoreboard and cannot be undone. Are you sure?')" href=`/posts/delete/${scoreBoard._id}`) REMOVE SCOREBOARD
+  br
+  br
+  a.back1.add(href=`/posts/add-score/${scoreBoard._id}`) &#43;Add Scores
+  h2.title=scoreBoard.title
+  p.date=createdAt
+  p.des=scoreBoard.description
+  table.table
+    thead
+      tr
+        td
+        - var n = 1
+        each player in scoreBoard.scoreBoard
+          td.player
+            a(href=`/posts/edit-player/${scoreBoard._id}/${n}`, title='Edit player')=player[0]
+            li.li-player= n++
+      tr
+        each total in totals
+          td.player= total 
+    tbody
+      - var n = 0
+      each round in rounds
+        tr
+          each score in round
+            td
+              a(href=`/posts/edit-round/${scoreBoard._id}/${n+1}`, title='Edit this round')=score
+        li.li-player= n++
